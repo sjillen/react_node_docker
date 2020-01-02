@@ -1,27 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ScanForm from './ScanForm';
 import ScanList from './ScanList';
 import { Container, Row, Col } from 'react-bootstrap';
-import axios from 'axios';
-
-const item = { repositoryName: 'name', status: 'pending', findings: [], queuedAt: Date.now() };
-
-const url = 'http://localhost:3090/results';
+import useScan from './useScan';
 
 const Dashboard = () => {
-    const [scans, setScans] = useState([]);
-
-    const addScan = async repoName => {
-        const response = await axios.post(url, { repoName });
-        setScans([...scans, response.data]);
-    };
-
-    useEffect(() => {
-        (async () => {
-            const response = await axios.get(url);
-            setScans(response.data);
-        })();
-    }, []);
+    const [scans, addScan] = useScan();
 
     return (
         <Container className="mt-5">
