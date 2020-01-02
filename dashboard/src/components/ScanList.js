@@ -24,7 +24,7 @@ const ScanList = ({ list }) => {
 
                         <Accordion.Collapse eventKey={index}>
                             <Card.Body className="center-align">
-                                <ScanDetails />
+                                <ScanDetails findings={scan.findings} />
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
