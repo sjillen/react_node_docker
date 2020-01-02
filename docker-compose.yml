@@ -25,6 +25,7 @@ services:
       - /app/node_modules
       - ./dashboard:/app
   postgres:
+    restart: always
     container_name: postgres
     image: 'postgres:latest'
     ports:

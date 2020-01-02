@@ -17,9 +17,18 @@ const ScanList = ({ list }) => {
         <>
             <h2>Security Scan Results</h2>
             <Accordion>
+                <Card bg="primary" text="white">
+                    <Card.Header>
+                        <Row>
+                            <Col sm={3}>Name</Col>
+                            <Col sm={3}>Status</Col>
+                            <Col sm={5}>Timestamp</Col>
+                        </Row>
+                    </Card.Header>
+                </Card>
                 {list.map((scan, index) => (
                     <Card key={index}>
-                        <Accordion.Toggle as={Card.Header} eventKey={index}>
+                        <Accordion.Toggle style={{ cursor: 'pointer' }} as={Card.Header} eventKey={index}>
                             <Row>
                                 <Col sm={3}>{scan.repositoryName}</Col>
                                 <Col sm={3}>{scan.status}</Col>
