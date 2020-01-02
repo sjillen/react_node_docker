@@ -40,6 +40,10 @@ module.exports = {
             return res.status(400).json({ error: e.message });
         }
 
+        if (!result) {
+            return res.status(404).json({ error: 'Not Result found for Id ' + id });
+        }
+
         return res.status(200).json(result);
     },
 };
