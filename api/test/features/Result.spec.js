@@ -44,6 +44,16 @@ describe('result api', () => {
             const stored = await Result.findOne({ where: { repositoryName: repoName } });
             expect(stored).toBeTruthy();
         });
+
+        it('should return an error if name is not a string', async () => {
+            const repoName = { not: 'a string' };
+
+            const response = await request(app)
+                .post('/results')
+                .send({ repoName });
+
+            expect(response.status).toBe(400);
+        });
     });
 
     describe('result show', () => {
