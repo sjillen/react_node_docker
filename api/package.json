@@ -4,8 +4,8 @@
     "description": "Back end for technical test for the full stack developer position at Guardrails",
     "main": "index.js",
     "scripts": {
-        "test": "jest --detectOpenHandles",
-        "tdd": "jest --watchAll --detectOpenHandles",
+        "test": "NODE_ENV=test jest --detectOpenHandles",
+        "tdd": "NODE_ENV=test jest --watchAll --detectOpenHandles",
         "start": "node index.js",
         "dev": "nodemon -L index.js"
     },

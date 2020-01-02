@@ -9,7 +9,11 @@ services:
       - 3090:3090
     volumes:
       - /app/node_modules
-      - ./api:/app        
+      - ./api:/app  
+    depends_on:
+      - postgres
+    links:
+      - postgres       
   dashboard:
     container_name: dashboard
     build:
@@ -20,4 +24,18 @@ services:
     volumes:
       - /app/node_modules
       - ./dashboard:/app
+  postgres:
+    container_name: postgres
+    image: 'postgres:latest'
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: "dev_db"
+      POSTGRES_USER: "guardrails"
+      POSTGRES_PASSWORD: "password"
+    volumes:
+      - ./api/database/script/init_test.sql:/docker-entrypoint-initdb.d/init_test.sql
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
 

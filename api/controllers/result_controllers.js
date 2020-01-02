@@ -1,3 +1,5 @@
+const { Result } = require('../models');
+
 module.exports = {
     async index(req, res, next) {
         let results = [];
