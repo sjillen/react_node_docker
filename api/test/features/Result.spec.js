@@ -54,28 +54,6 @@ describe('result api', () => {
 
             expect(response.status).toBe(400);
         });
-    });
-
-    describe('result show', () => {
-        it('should return the detail of a result resource', async () => {
-            const resultData = { repositoryName: 'repo', status: 'pending' };
-            const result = await Result.create(resultData);
-
-            const response = await request(app).get('/results/' + result.id);
-
-            expect(response.status).toEqual(200);
-            expect(response.body.id).toBe(result.id);
-            expect(response.body.repositoryName).toBe(result.repositoryName);
-            expect(response.body.status).toBe(result.status);
-        });
-
-        it('should return a return a not found error if id does not exists', async () => {
-            await Result.create({ repositoryName: 'repo', status: 'pending' });
-
-            const response = await request(app).get('/results/' + 2);
-
-            expect(response.status).toEqual(404);
-        });
 
         it('should return an error if name is empty', async () => {
             const scanName = '      ';
@@ -95,6 +73,28 @@ describe('result api', () => {
 
             expect(response.status).toBe(201);
             expect(response.body.repositoryName).toEqual('I am a very bad boy');
+        });
+    });
+
+    describe('result show', () => {
+        it('should return the detail of a result resource', async () => {
+            const resultData = { repositoryName: 'repo', status: 'pending' };
+            const result = await Result.create(resultData);
+
+            const response = await request(app).get('/results/' + result.id);
+
+            expect(response.status).toEqual(200);
+            expect(response.body.id).toBe(result.id);
+            expect(response.body.repositoryName).toBe(result.repositoryName);
+            expect(response.body.status).toBe(result.status);
+        });
+
+        it('should return a not found error if id does not exists', async () => {
+            await Result.create({ repositoryName: 'repo', status: 'pending' });
+
+            const response = await request(app).get('/results/' + 2);
+
+            expect(response.status).toEqual(404);
         });
     });
 });
