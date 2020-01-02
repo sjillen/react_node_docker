@@ -1,5 +1,6 @@
 const { Result } = require('../models');
 const { scan } = require('../services');
+const { logger } = require('../tools');
 
 module.exports = {
     async index(req, res) {
@@ -7,7 +8,7 @@ module.exports = {
         try {
             results = await Result.findAll();
         } catch (e) {
-            console.error(e);
+            logger.error(e);
             return res.status(400).json({ error: e.message });
         }
 
@@ -22,7 +23,7 @@ module.exports = {
         try {
             result = await Result.create(scannedRepo);
         } catch (e) {
-            console.error(e);
+            logger.error(e);
             return res.status(400).json({ error: e.message });
         }
 
@@ -36,7 +37,7 @@ module.exports = {
         try {
             result = await Result.findOne({ where: { id } }, { raw: true });
         } catch (e) {
-            console.error(e);
+            logger.error(e);
             return res.status(400).json({ error: e.message });
         }
 
