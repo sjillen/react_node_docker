@@ -11,8 +11,9 @@ const url = 'http://localhost:3090/results';
 const Dashboard = () => {
     const [scans, setScans] = useState([]);
 
-    const addScan = () => {
-        setScans([...scans, item]);
+    const addScan = async repoName => {
+        const response = await axios.post(url, { repoName });
+        setScans([...scans, response.data]);
     };
 
     useEffect(() => {

@@ -9,7 +9,7 @@ const ScanForm = ({ addScan }) => {
             <Form
                 onSubmit={e => {
                     e.preventDefault();
-                    addScan({ repoName });
+                    addScan(repoName);
                 }}
             >
                 <Form.Group controlId="formPlainText">
