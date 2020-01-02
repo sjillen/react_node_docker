@@ -7,8 +7,13 @@ const useScan = () => {
     const [scans, setScans] = useState([]);
 
     const addScan = async repoName => {
-        const response = await axios.post(url, { repoName });
-        setScans([...scans, response.data]);
+        let response;
+        try {
+            response = await axios.post(url, { repoName });
+            setScans([...scans, response.data]);
+        } catch (e) {
+            throw new Error('You must enter a valid name!');
+        }
     };
 
     useEffect(() => {
