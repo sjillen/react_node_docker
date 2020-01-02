@@ -76,5 +76,25 @@ describe('result api', () => {
 
             expect(response.status).toEqual(404);
         });
+
+        it('should return an error if name is empty', async () => {
+            const scanName = '      ';
+
+            const response = await request(app)
+                .post('/results')
+                .send({ scanName });
+
+            expect(response.status).toBe(400);
+        });
+
+        it('should clean repoName from unauthorized components', async () => {
+            const repoName = '  <script> I am a very bad boy</script>    ';
+            const response = await request(app)
+                .post('/results')
+                .send({ repoName });
+
+            expect(response.status).toBe(201);
+            expect(response.body.repositoryName).toEqual('I am a very bad boy');
+        });
     });
 });
