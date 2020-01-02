@@ -3,18 +3,18 @@ module.exports = (sequelize, DataTypes) => {
     const Result = sequelize.define(
         'Result',
         {
-            Id: {
+            id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: DataTypes.INTEGER,
             },
-            Status: DataTypes.STRING,
-            RepositoryName: DataTypes.STRING,
-            QueuedAt: DataTypes.DATE,
-            ScanningAt: DataTypes.DATE,
-            FinishedAt: DataTypes.DATE,
-            Findings: DataTypes.JSONB,
+            status: DataTypes.STRING,
+            repositoryName: DataTypes.STRING,
+            queuedAt: DataTypes.DATE,
+            scanningAt: DataTypes.DATE,
+            finishedAt: DataTypes.DATE,
+            findings: DataTypes.JSONB,
         },
         {}
     );
