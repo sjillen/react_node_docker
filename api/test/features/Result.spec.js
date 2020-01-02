@@ -45,4 +45,18 @@ describe('result api', () => {
             expect(stored).toBeTruthy();
         });
     });
+
+    describe('result show', () => {
+        it('should show the detail of a result resource', async () => {
+            const resultData = { repositoryName: 'repo', status: 'pending' };
+            const result = await Result.create(resultData);
+
+            const response = await request(app).get('/results/' + result.id);
+
+            expect(response.status).toEqual(200);
+            expect(response.body.id).toBe(result.id);
+            expect(response.body.repositoryName).toBe(result.repositoryName);
+            expect(response.body.status).toBe(result.status);
+        });
+    });
 });

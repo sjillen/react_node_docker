@@ -28,4 +28,18 @@ module.exports = {
 
         return res.status(201).json(result.dataValues);
     },
+
+    async show(req, res) {
+        const id = req.params.resultId;
+
+        let result = null;
+        try {
+            result = await Result.findOne({ where: { id } }, { raw: true });
+        } catch (e) {
+            console.error(e);
+            return res.status(400).json({ error: e.message });
+        }
+
+        return res.status(200).json(result);
+    },
 };
