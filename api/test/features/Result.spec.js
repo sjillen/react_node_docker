@@ -1,10 +1,23 @@
 const request = require('supertest');
 const app = require('../../app');
+const db = require('../../models');
+const { Result, sequelize } = db;
 
 describe('result api', () => {
-    it('should return a 200', async () => {
-        const response = await request(app).get('/');
+    beforeAll(async () => {
+        await sequelize.sync({ force: true });
+    });
 
-        expect(response.status).toEqual(200);
+    afterEach(async () => {
+        await Result.destroy({ where: {} });
+    });
+
+    it('should show all the result resource', async () => {
+        const r = await Result.create({ RepositoryName: 'repo', Status: 'pending' });
+
+        const response = await request(app).get('/results');
+        expect(response.status).toBe(200);
+        expect(response.body.length).toEqual(1);
+        expect(response.body[0]).toEqual(r.dataValues);
     });
 });

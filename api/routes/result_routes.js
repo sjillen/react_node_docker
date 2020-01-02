@@ -1,5 +1,5 @@
 const { ResultController } = require('../controllers');
 
 module.exports = app => {
-    app.get('/', ResultController.index);
+    app.get('/results', ResultController.index);
 };
