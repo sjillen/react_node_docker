@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  api:
+    container_name: api
+    build:
+      dockerfile: dockerfile
+      context: ./api
+    ports:
+      - 3090:3090
+    volumes:
+      - /app/node_modules
+      - ./api:/app        
+  dashboard:
+    container_name: dashboard
+    build:
+      dockerfile: dockerfile
+      context: ./dashboard
+    ports: 
+        - 3000:3000
+    volumes:
+      - /app/node_modules
+      - ./dashboard:/app
+
