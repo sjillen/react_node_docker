@@ -1,11 +1,18 @@
 import React from 'react';
+import ScanDetails from './ScanDetails';
 
 const ScanList = () => {
     return (
         <ul>
-            <li>scan 1</li>
-            <li>scan 2</li>
-            <li>scan 3</li>
+            <li>
+                <ScanDetails />
+            </li>
+            <li>
+                <ScanDetails />
+            </li>
+            <li>
+                <ScanDetails />
+            </li>
         </ul>
     );
 };
