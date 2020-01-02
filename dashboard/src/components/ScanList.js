@@ -2,9 +2,7 @@ import React from 'react';
 import ScanDetails from './ScanDetails';
 import { Accordion, Card, Badge, Row, Col } from 'react-bootstrap';
 
-const ScanList = () => {
-    const item = { repositoryName: 'name', status: 'pending', findings: [], queuedAt: Date.now() };
-    const list = [item, item, item];
+const ScanList = ({ list }) => {
     return (
         <>
             <h2>Security Scan Results</h2>
