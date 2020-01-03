@@ -14,11 +14,11 @@ Run `docker-compose up` to start the containers. The dashboard is accessible at 
 
 -   **Scan Service:** We could improve the logic in there to have less random results and maybe have something more sequential ( queued > scanning > result).
 -   **Auth:** An Auth service could be added to manage users and their scanning results.
--   **Migrations:** Implementing a migration system for the models with sequelize. There is however an issue with the database access when trying to run migrations from the host.
+-   **Migrations:** Implementing a migration system for the models with sequelize. In the current release, there is an issue with the database access when trying to run migrations from the host.
 
 ### For the Dashboard
 
--   **ScanDetails State Management:** Instead of loading all the data at once from the Dashboard, we could fetch ony the required data for ScanList and then individually fetch the findings only when the corresponding ScanDetails component is diplayed (This is not relevant if the number of findings stays relatively low for each repo).
+-   **ScanDetails State Management:** Instead of loading all the data at once from the Dashboard, we could fetch only the required data for ScanList and then individually fetch the findings only when the corresponding ScanDetails component is diplayed (This is not relevant if the number of findings stays relatively low for each repo).
 -   **Error Handling:** The logic for handling axios request and the errors should implemented in a separate file
 
 ### For Docker
