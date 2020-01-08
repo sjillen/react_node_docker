@@ -7,7 +7,7 @@ const { sequelize } = require('./models');
 const { logger } = require('./tools');
 
 // This is used until migrations are up and running for dev and prod
-if (process.env.NODE_ENV !== 'test') sequelize.sync({ force: true });
+if (process.env.NODE_ENV !== 'test') sequelize.sync();
 
 const app = express();
 app.use(cors());
