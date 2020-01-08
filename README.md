@@ -14,7 +14,7 @@ Run `docker-compose up` to start the containers. The dashboard is accessible at 
 
 -   **Scan Service:** We could improve the logic in there to have less random results and maybe have something more sequential ( queued > scanning > result).
 -   **Auth:** An Auth service could be added to manage users and their scanning results.
--   **Migrations:** Implementing a migration system for the models with sequelize. 
+-   **Migrations:** Implementing a migration system for the models with sequelize.
 
 ### For the Dashboard
 
@@ -24,4 +24,4 @@ Run `docker-compose up` to start the containers. The dashboard is accessible at 
 ### For Docker
 
 -   **React HMR:** The HMR does not currently work when the dashboard is running in the container
--   **DB Data persistence:** The data is erased from the DB when the container is stopped.
+-   **[FIXED] DB Data persistence:** The data is erased from the DB when the container is stopped.
