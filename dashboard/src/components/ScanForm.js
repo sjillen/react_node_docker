@@ -8,17 +8,24 @@ const ScanForm = ({ addScan }) => {
 
     const handleSubmit = ev => {
         const form = ev.currentTarget;
-        if (form.checkValidity() === true) {
-            addScan(repoName).catch(err => {
-                setError(err.message);
-            });
-        } else {
-            ev.preventDefault();
+        ev.preventDefault();
+
+        if (form.checkValidity() === false) {
             ev.stopPropagation();
+        } else {
+            addScan(repoName)
+                .catch(err => {
+                    setError(err.message);
+                })
+                .then(() => {
+                    setRepoName('');
+                    setValidated(false);
+                });
         }
 
         setValidated(true);
     };
+
     return (
         <>
             <h2>Submit a Scan Result</h2>

@@ -12,7 +12,7 @@ const useScan = () => {
             response = await axios.post(url, { repoName });
             setScans([...scans, response.data]);
         } catch (e) {
-            throw new Error('You must enter a valid name!');
+            throw new Error('The name you entered does not contain authorized characters!');
         }
     };
 
