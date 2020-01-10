@@ -18,8 +18,12 @@ const useScan = () => {
 
     useEffect(() => {
         (async () => {
-            const response = await axios.get(url);
-            setScans(response.data);
+            try {
+                const response = await axios.get(url);
+                setScans(response.data);
+            } catch (e) {
+                throw new Error('could not fetch scan, there is likely a problem with the server');
+            }
         })();
     }, []);
 

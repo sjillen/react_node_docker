@@ -27,13 +27,19 @@ const ScanList = ({ list }) => {
                     </Card.Header>
                 </Card>
                 {list.map((scan, index) => (
-                    <Card key={index}>
+                    <Card key={index} className="scan_item">
                         <Accordion.Toggle style={{ cursor: 'pointer' }} as={Card.Header} eventKey={index}>
                             <Row>
-                                <Col sm={3}>{scan.repositoryName}</Col>
-                                <Col sm={3}>{scan.status}</Col>
-                                <Col sm={5}>{displayCorrectTimestamp(scan)}</Col>
-                                <Col sm={1}>
+                                <Col className="repoName" sm={3}>
+                                    {scan.repositoryName}
+                                </Col>
+                                <Col className="status" sm={3}>
+                                    {scan.status}
+                                </Col>
+                                <Col className="timestamp" sm={5}>
+                                    {displayCorrectTimestamp(scan)}
+                                </Col>
+                                <Col className="findings" sm={1}>
                                     {scan.findings.length > 0 ? (
                                         <Badge pill variant="warning">
                                             {scan.findings.length}

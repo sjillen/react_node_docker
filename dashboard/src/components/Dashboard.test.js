@@ -1,33 +1,35 @@
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
-import App from './App';
+import Dashboard from './Dashboard';
 import axiosMock from 'axios';
 import { act } from 'react-dom/test-utils';
+
 jest.mock('axios');
 
-describe('App', () => {
+describe('Dashboard', () => {
     let container = null;
-
     beforeEach(() => {
         container = document.createElement('div');
         document.body.appendChild(container);
     });
 
     afterEach(() => {
+        //  en sortie de test
         unmountComponentAtNode(container);
         container.remove();
         container = null;
     });
 
-    it('renders without error', async () => {
+    it('fetches the scans once at render', async () => {
         axiosMock.get.mockResolvedValueOnce({
             status: 200,
             data: [],
         });
 
         await act(async () => {
-            render(<App />, container);
+            render(<Dashboard />, container);
         });
-        expect(container.childNodes.length).toBe(2);
+
+        expect(axiosMock.get).toHaveBeenCalledTimes(1);
     });
 });
