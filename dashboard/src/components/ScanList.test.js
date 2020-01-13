@@ -46,10 +46,10 @@ describe('ScanList', () => {
         });
 
         const [pending, scanning, failure, success] = container.querySelectorAll('.scan_item');
-        expect(pending.querySelector('.timestamp').textContent).toEqual(queuedAt);
-        expect(scanning.querySelector('.timestamp').textContent).toEqual(scanningAt);
-        expect(failure.querySelector('.timestamp').textContent).toEqual(finishedAt);
-        expect(success.querySelector('.timestamp').textContent).toEqual(finishedAt);
+        expect(pending.querySelector('.timestamp')).toHaveTextContent(queuedAt);
+        expect(scanning.querySelector('.timestamp')).toHaveTextContent(scanningAt);
+        expect(failure.querySelector('.timestamp')).toHaveTextContent(finishedAt);
+        expect(success.querySelector('.timestamp')).toHaveTextContent(finishedAt);
     });
 
     it('displays the Badges with a number of findings', () => {
@@ -76,9 +76,9 @@ describe('ScanList', () => {
         });
 
         const [one, two, three] = container.querySelectorAll('.scan_item');
-        expect(one.querySelector('.findings').childNodes[0].textContent).toEqual('1');
-        expect(two.querySelector('.findings').childNodes[0].textContent).toEqual('2');
-        expect(three.querySelector('.findings').childNodes[0].textContent).toEqual('3');
+        expect(one.querySelector('.findings').childNodes[0]).toHaveTextContent(1);
+        expect(two.querySelector('.findings').childNodes[0]).toHaveTextContent(2);
+        expect(three.querySelector('.findings').childNodes[0]).toHaveTextContent(3);
     });
 
     it('does not display the Badge when there is no findings', () => {
@@ -90,6 +90,6 @@ describe('ScanList', () => {
 
         const scan = container.querySelector('.scan_item');
         expect(scan.querySelector('.findings').childNodes.length).toEqual(0);
-        expect(scan.querySelector('.findings').textContent).toEqual('');
+        expect(scan.querySelector('.findings')).toBeEmpty();
     });
 });
