@@ -18,9 +18,9 @@ module.exports = {
     async store(req, res) {
         const repo = { repositoryName: req.body.repoName };
 
-        const scannedRepo = scan(repo);
         let result = {};
         try {
+            const scannedRepo = scan.getResults(repo);
             result = await Result.create(scannedRepo);
         } catch (e) {
             logger.error(e);

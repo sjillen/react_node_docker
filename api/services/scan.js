@@ -26,7 +26,7 @@ const sample_finding = {
     },
 };
 
-const scan = repo => ({ ...repo, ...populateResultEntity() });
+const getResults = repo => ({ ...repo, ...populateResultEntity() });
 
 const populateResultEntity = () => attributeDataFromStatus(chooseRandomStatus());
 
@@ -64,4 +64,4 @@ const attributeFindings = (max = 5) => {
     return findings;
 };
 
-module.exports = scan;
+module.exports = Object.assign({}, { getResults });
