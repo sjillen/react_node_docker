@@ -1,31 +1,16 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-
-const url = 'http://localhost:3090/results';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { createScan, fetchScans } from '../actions';
 
 const useScan = () => {
-    const [scans, setScans] = useState([]);
-
-    const addScan = async repoName => {
-        let response;
-        try {
-            response = await axios.post(url, { repoName });
-            setScans([...scans, response.data]);
-        } catch (e) {
-            throw new Error('The name you entered does not contain authorized characters!');
-        }
-    };
+    const scans = useSelector(state => state.scans.scans);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        (async () => {
-            try {
-                const response = await axios.get(url);
-                setScans(response.data);
-            } catch (e) {
-                throw new Error('could not fetch scan, there is likely a problem with the server');
-            }
-        })();
-    }, []);
+        dispatch(fetchScans());
+    }, [dispatch]);
+
+    const addScan = repoName => dispatch(createScan(repoName));
 
     return [scans, addScan];
 };
