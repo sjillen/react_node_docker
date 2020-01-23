@@ -8,7 +8,6 @@ const requests = (baseUrl = 'http://localhost:3090') => {
             const response = await axios.get(url);
             return response.data;
         } catch (e) {
-            console.log(e);
             throw new Error('could not fetch scan, there is likely a problem with the server');
         }
     };

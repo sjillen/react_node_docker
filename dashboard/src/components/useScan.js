@@ -1,18 +1,17 @@
-import { useState, useEffect } from 'react';
-import { resultsApi } from '../apis';
+import { useEffect, useReducer } from 'react';
+import scanReducer from '../reducers';
+import { fetchScans, postScan } from '../actions';
 
 const useScan = () => {
-    const [scans, setScans] = useState([]);
+    const [scans, dispatch] = useReducer(scanReducer, []);
 
     const addScan = async repoName => {
-        const newScan = await resultsApi.postResult(repoName);
-        setScans([...scans, newScan]);
+        dispatch(await postScan(repoName));
     };
 
     useEffect(() => {
         (async () => {
-            const scanList = await resultsApi.listResults();
-            setScans(scanList);
+            dispatch(await fetchScans());
         })();
     }, []);
 
