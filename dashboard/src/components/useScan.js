@@ -1,5 +1,5 @@
 import { useEffect, useReducer } from 'react';
-import scanReducer from '../reducers';
+import { scanReducer } from '../reducers';
 import { fetchScans, postScan } from '../actions';
 
 const useScan = () => {
