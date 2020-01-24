@@ -9,7 +9,7 @@ module.exports = {
             results = await Result.findAll();
         } catch (e) {
             logger.error(e);
-            return res.status(400).json({ error: e.message });
+            return res.status(400).json({ message: e.message });
         }
 
         return res.status(200).json(results.map(r => r.dataValues));
@@ -24,7 +24,7 @@ module.exports = {
             result = await Result.create(scannedRepo);
         } catch (e) {
             logger.error(e);
-            return res.status(400).json({ error: e.message });
+            return res.status(400).json({ message: e.message });
         }
 
         return res.status(201).json(result.dataValues);
@@ -38,11 +38,11 @@ module.exports = {
             result = await Result.findOne({ where: { id } }, { raw: true });
         } catch (e) {
             logger.error(e);
-            return res.status(400).json({ error: e.message });
+            return res.status(400).json({ message: e.message });
         }
 
         if (!result) {
-            return res.status(404).json({ error: 'Not Result found for Id ' + id });
+            return res.status(404).json({ message: 'Not Result found for Id ' + id });
         }
 
         return res.status(200).json(result);

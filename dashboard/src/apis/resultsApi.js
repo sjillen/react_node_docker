@@ -8,7 +8,7 @@ const requests = (baseUrl = 'http://localhost:3090') => {
             const response = await axios.get(url);
             return response.data;
         } catch (e) {
-            throw new Error('could not fetch scan, there is likely a problem with the server');
+            handleError(e);
         }
     };
 
@@ -17,9 +17,15 @@ const requests = (baseUrl = 'http://localhost:3090') => {
             const response = await axios.post(url, { repoName });
             return response.data;
         } catch (e) {
-            throw new Error('The name you entered does not contain authorized characters!');
+            handleError(e);
         }
     };
+
+    const handleError = error => {
+        const message = error.response ? error.response.data.message : error;
+        throw new Error(message);
+    };
+
     return { listResults, postResult };
 };
 
