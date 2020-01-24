@@ -1,1 +1,1 @@
-export { default as resultsApi } from './resultsApi';
+export { default as scansApi } from './scansApi';

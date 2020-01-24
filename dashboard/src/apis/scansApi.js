@@ -3,7 +3,7 @@ import axios from 'axios';
 const requests = (baseUrl = 'http://localhost:3090') => {
     const url = baseUrl + '/results';
 
-    const listResults = async () => {
+    const list = async () => {
         try {
             const response = await axios.get(url);
             return response.data;
@@ -12,7 +12,7 @@ const requests = (baseUrl = 'http://localhost:3090') => {
         }
     };
 
-    const postResult = async repoName => {
+    const create = async repoName => {
         try {
             const response = await axios.post(url, { repoName });
             return response.data;
@@ -26,7 +26,7 @@ const requests = (baseUrl = 'http://localhost:3090') => {
         throw new Error(message);
     };
 
-    return { listResults, postResult };
+    return { list, create };
 };
 
 export default Object.assign({}, { ...requests() });
