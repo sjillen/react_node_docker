@@ -1,8 +1,9 @@
-# GuardRails Technical Test
+# Dummy Security Scan Results
 
 ## Description
 
-This project is made in accordance with the requirements of the [following exercice](https://github.com/guardrailsio/full-stack-engineer-challenge)
+This project is made in accordance with the requirements of the [following exercise](https://github.com/guardrailsio/full-stack-engineer-challenge).
+The technologies used are React, NodeJs with Express, PostGresSQL and Docker.
 
 ## Setup
 
@@ -23,5 +24,5 @@ Run `docker-compose up` to start the containers. The dashboard is accessible at 
 
 ### For Docker
 
--   **React HMR:** The HMR does not currently work when the dashboard is running in the container
+-   **[FIXED]React HMR:** The HMR does not currently work when the dashboard is running in the container
 -   **[FIXED] DB Data persistence:** The data is erased from the DB when the container is stopped.
